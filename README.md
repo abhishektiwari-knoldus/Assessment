@@ -20,3 +20,11 @@ After that the latest image from dockerhub is pulled by k8s deployment and deplo
 Dockerfile is added along with pipeline configuration and deployment file in Docker directory in this repo.       
 
 --------Ansible--------------          
+
+In Ansible demo i have created a ansible role named as akash. This role has one task which installes nginx on local machines and applies a ginja template to that machines.
+we can change variables in this role to see dynamic content in configured machine's browser.
+
+To run playbook we can use this command : 
+ansible-playbook master.yml (It selects the appropriate hosts and roles to run the playbook)
+
+
