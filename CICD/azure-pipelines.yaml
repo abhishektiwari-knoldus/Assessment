@@ -1,0 +1,48 @@
+# Docker
+# Build a Docker image
+# https://docs.microsoft.com/azure/devops/pipelines/languages/docker
+
+trigger:
+- master
+
+
+resources:
+- repo: self
+
+variables:
+  tag: '$(Build.BuildId)'
+  
+stages:
+- stage: Build
+  displayName: Build image.
+  jobs:
+  - job: Build
+    displayName: Build
+    pool:
+      my-agent
+    steps:
+    - task: Docker@2
+      displayName: Build an image
+      inputs:
+        containerRegistry: 'docker-hub'
+        repository: 'abhishek00007/azureapptf'
+        command: 'build'
+        Dockerfile: 'Dockerfile'
+        tags: '$(tag)'
+    - task: Docker@2
+      displayName: docker login
+      inputs:
+        containerRegistry: 'docker-hub'
+        command: 'login'
+    - task: Docker@2
+      displayName: image push
+      inputs:
+        containerRegistry: 'docker-hub'
+        repository: 'abhishek00007/azureapptf'
+        command: 'push' 
+        tags: '$(tag)' 
+    - script: kubectl apply -f ks.yml
+      displayName: k8s configurationn
+    - script: kubectl set image deployment/mydeploy mycontainer=abhishek00007/azureapptf:$(tag)
+      displayName: deploy to k8s
+       
