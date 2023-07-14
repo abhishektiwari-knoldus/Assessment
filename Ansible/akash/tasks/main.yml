@@ -1,0 +1,15 @@
+---
+# tasks file for akash
+
+
+    - name: Install Nginx
+      apt:
+        name: nginx
+        state: latest
+
+    - name: Apply Page Template
+      template:
+        src: landing-page.html.j2
+        dest: /var/www/html/index.nginx-debian.html
+
+  
