@@ -27,4 +27,7 @@ we can change variables in this role to see dynamic content in configured machin
 To run playbook we can use this command : 
 ansible-playbook master.yml (It selects the appropriate hosts and roles to run the playbook)
 
+ --------Monitor--------
+ For monitoring in this application i have used prometheus and grafana to monitor the cpu and memmory metrics of k8s cluster
+
 
