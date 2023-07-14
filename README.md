@@ -17,7 +17,7 @@ Steps to Create pipeline using Terraform :
   --------Docker-----------
   I have created a multistage Dockerfile of react based app which is build by a jenkins pipeline and push the different versions of docker image to dockerhub. After that the latest image from dockerhub is pulled by k8s deployment
   and deploys it to minikube cluster.
-  Dockerfile is added along with pipeline configuration in Docker directory in this repo.
+  Dockerfile is added along with pipeline configuration and deployment file in Docker directory in this repo.
   
 
   --------Ansible--------------
